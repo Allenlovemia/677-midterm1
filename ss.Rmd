@@ -1,0 +1,40 @@
+---
+title: "677 midterm"
+output: pdf_document
+header-includes:
+  - \usepackage{amsmath}
+  - \usepackage{amsfonts}
+---
+# order statistic
+
+## Uniform Distribution
+
+Consider the uniform distribution $U(a,b)$. The PDF and CDF are given by:
+
+- PDF: $f(x) = \frac{1}{b-a}$, for $a \leq x \leq b$
+- CDF: $F(x) = \frac{x-a}{b-a}$, for $a \leq x \leq b$
+
+For the $k$-th order statistic $X_{(k)}$ from a sample of size $n$:
+
+- PDF: $f_{(k)}(x) = \frac{n!}{(k-1)!(n-k)!} [F(x)]^{k-1}[1 - F(x)]^{n-k} f(x)$
+
+Applying the CDF and PDF of the uniform distribution:
+
+- PDF of $X_{(k)}$: $f_{(k)}(x) = \frac{n!}{(k-1)!(n-k)!} \left(\frac{x-a}{b-a}\right)^{k-1} \left(1 - \frac{x-a}{b-a}\right)^{n-k} \frac{1}{b-a}$
+
+## Exponential Distribution
+
+For the exponential distribution with rate $\lambda$, the PDF and CDF are:
+
+- PDF: $f(x) = \lambda e^{-\lambda x}$, for $x \geq 0$
+- CDF: $F(x) = 1 - e^{-\lambda x}$, for $x \geq 0$
+
+The PDF of the $k$-th order statistic $X_{(k)}$:
+
+- PDF of $X_{(k)}$: $f_{(k)}(x) = \frac{n!}{(k-1)!(n-k)!} [1 - e^{-\lambda x}]^{k-1} e^{-\lambda x[n-k]} \lambda e^{-\lambda x}$
+
+## Normal distribution
+
+For the normal distribution, deriving the distribution of order statistics analytically is more complex due
+to the non-linearity of its CDF. Instead, we often use numerical methods or simulations to study the order
+statistics of normal samples
