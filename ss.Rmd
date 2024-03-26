@@ -38,3 +38,62 @@ The PDF of the $k$-th order statistic $X_{(k)}$:
 For the normal distribution, deriving the distribution of order statistics analytically is more complex due
 to the non-linearity of its CDF. Instead, we often use numerical methods or simulations to study the order
 statistics of normal samples
+
+## Simulation of uniform
+
+In this chapter,I choose s order statistics that is:0th,25th,50th,75th,100th 
+```{r,echo=FALSE}
+# Set seed for reproducibility
+set.seed(123)
+
+# Sample size and number of simulations
+n <- 1000
+num_simulations <- 10000
+
+# Generate samples from uniform distribution
+uniform_samples <- matrix(runif(n * num_simulations), ncol = n)
+
+# Calculate order statistics for each simulation
+uniform_order_stats <- apply(uniform_samples, 1, function(x) quantile(x, probs = c(0, 0.25, 0.5, 0.75, 1)))
+
+# Plot histograms for the order statistics
+par(mfrow = c(3, 2))  # Arrange plots in 3 rows, 2 columns
+for (i in 1:5) {
+  hist(uniform_order_stats[i, ], main = paste("Uniform Distribution - Order Statistic", i), xlab = "Value", breaks = 40, probability = TRUE)
+}
+
+
+```
+
+## Simulation of exponetianal
+
+```{r,echo=FALSE}
+# Generate samples from exponential distribution
+lambda <- 1
+exponential_samples <- matrix(rexp(n * num_simulations, rate = lambda), ncol = n)
+
+# Calculate order statistics for each simulation
+exponential_order_stats <- apply(exponential_samples, 1, function(x) quantile(x, probs = c(0, 0.25, 0.5, 0.75, 1)))
+
+# Plot histograms for the order statistics
+for (i in 1:5) {
+  hist(exponential_order_stats[i, ], main = paste("Exponential Distribution - Order Statistic", i), xlab = "Value", breaks = 40, probability = TRUE)
+}
+
+```
+## Simulation of normal
+
+```{r,echo=FALSE}
+# Generate samples from normal distribution
+normal_samples <- matrix(rnorm(n * num_simulations), ncol = n)
+
+# Calculate order statistics for each simulation
+normal_order_stats <- apply(normal_samples, 1, function(x) quantile(x, probs = c(0, 0.25, 0.5, 0.75, 1)))
+
+# Plot histograms for the order statistics
+for (i in 1:5) {
+  hist(normal_order_stats[i, ], main = paste("Normal Distribution - Order Statistic", i), xlab = "Value", breaks = 40, probability = TRUE)
+}
+
+```
+
